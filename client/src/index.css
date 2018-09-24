@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.content {
+    padding: 40px 20px 20px;
+}
+.btn {
+    cursor: pointer;
+}
+/* .table td {
+    padding: 0.5rem;
+} */
