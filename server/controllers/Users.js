@@ -57,20 +57,18 @@ exports.create = (req, res, next) => {
         password: body.password
     }
     req.getConnection(function (err, connection) {
-        connection
-            .query("select username from user where username=?", [post.username], function (err, results) {
-                if (err)
-                    return next(err)
-                if (results.length > 0) {
-                    res.send({ status: 201, message: 'Username is Duplicate' })
-                } else {
-                    connection.query("insert into user set ? ", post, (err, results) => {
-                        if (err)
-                            return next(err)
-                        res.send(results)
-                    })
-                }
-            });
+        connection.query("select username from user where username=?", [post.username], function (err, results) {
+            if (err) return next(err)
+            if (results.length > 0) {
+                res.send({ status: 201, message: 'Username is Duplicate' })
+            } else {
+                connection.query("insert into user set ? ", post, (err, results) => {
+                    if (err)
+                        return next(err)
+                    res.send(results)
+                })
+            }
+        });
     });
 }
 
@@ -85,8 +83,7 @@ exports.update = (req, res, next) => {
         password: body.password
     }
     req.getConnection(function (err, connection) {
-        connection
-            .query("select * from user where username=?", [post.username], function (err, results) {
+        connection.query("select * from user where username=?", [post.username], function (err, results) {
                 if (err)
                     return next(err)
                 var isUpdate = false;

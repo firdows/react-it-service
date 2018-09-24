@@ -25,4 +25,8 @@ module.exports = function (app) {
 
     ///Location
     app.get('/locations',locations.findAll);
+    app.post('/locations',locations.create);
+    app.get('/locations/:id',locations.findById);
+    app.put('/locations/:id',locations.update);
+    app.delete('/locations/:id',locations.delete);
 }
