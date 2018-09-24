@@ -1,10 +1,12 @@
 import App from './pages/App'
-import Home from './pages/Home';
-import User from './pages/User';
 import Signin from './pages/Auth/Signin'
 import Signout from './pages/Auth/Signout'
 import RequestAuth from './pages/Auth/Authentication'
 import page404 from './pages/Errors/page404'
+///----
+import Home from './pages/Home';
+import User from './pages/User';
+import Location from './pages/Location'
 
 const routes = [
     {
@@ -23,6 +25,9 @@ const routes = [
             }, {
                 path: 'user',
                 component: RequestAuth(User)
+            }, {
+                path: 'location',
+                component: Location
             }
         ]
     },

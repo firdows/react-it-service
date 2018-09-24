@@ -29,6 +29,9 @@ class Header extends Component {
                         <Link to="/work" className="nav-link">แจ้งซ่อม</Link>
                     </li>,
                     <li className="nav-item" key={3} >
+                        <Link to="/location" className="nav-link">สถานที่</Link>
+                    </li>,
+                    <li className="nav-item" key={4} >
                         <Link to="/user" className="nav-link">ผู้ใช้</Link>
                     </li>,
                 ]
