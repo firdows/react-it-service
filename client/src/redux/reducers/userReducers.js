@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
             return { ...state, users: { data: action.payload, isLoading: false, isRejected: false } }
         case 'LOAD_USERS_REJECTED':
             return { ...state, users: { data: action.payload, isLoading: false, isRejected: true } }
+
         //เกบ state กำรดงขอมลผใชตำม id ทสงไป
         case 'LOAD_USER_PENDING':
             return { ...state, user: { data: null, isLoading: true, isRejected: false } }
@@ -22,6 +23,7 @@ export default (state = initialState, action) => {
             return { ...state, user: { data: action.payload, isLoading: false, isRejected: false } }
         case 'LOAD_USER_REJECTED':
             return { ...state, user: { data: action.payload, isLoading: false, isRejected: true } }
+            
         //เกบ state กำรลบขอมลผใช
         case 'DELETE_USER_SUCCESS':
             return { ...state, userDelete: { data: true, isLoading: false, isRejected: false } }

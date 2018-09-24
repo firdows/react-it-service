@@ -4,11 +4,13 @@ import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import authReducers from './authReducers'
 import userReducers from './userReducers'
+import locationReducers from './locationReducers'
 
 
 const rootReducers = combineReducers({
     form: formReducer, //กำหนดชอ reducer ไววำชอ form นะครบตำมคำแนะนำของ redux-form
     authReducers,
-    userReducers
+    userReducers,
+    locationReducers
 })
 export default rootReducers
