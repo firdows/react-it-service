@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Table } from 'reactstrap'
+import { Table, Button, ButtonGroup } from 'reactstrap'
 
 export default class LocationTable extends Component {
     render() {
-        const { data } = this.props;
+        const { data, btnDelete, btnEdit, btnView } = this.props;
 
         return (
             <Table striped bordered hover>
@@ -23,8 +23,11 @@ export default class LocationTable extends Component {
                                 <td>{local.code}</td>
                                 <td>{local.name}</td>
                                 <td>
-
-
+                                    <ButtonGroup>
+                                        <Button color='secondary' onClick={() => btnView(local.id)}>ดู</Button>
+                                        <Button color='primary' onClick={() => btnEdit(local.id)}>แก้ไข</Button>
+                                        <Button color='danger' onClick={() => btnDelete(local.id)}>ลบ</Button>
+                                    </ButtonGroup>
                                 </td>
                             </tr>
                         )

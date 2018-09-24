@@ -1,5 +1,5 @@
 //Reducer เกบ State เกยวกบกำร Signin/Signout
-export default(state = {}, action) => {
+export default (state = {}, action) => {
     switch (action.type) {
         case 'AUTH_USER':
             // Signin สำเรจ ประเดนสำคญคอกำหนดตวแปร authenticated เปน true และเกบคำ payload
@@ -27,6 +27,12 @@ export default(state = {}, action) => {
             return {
                 ...state,
                 message: action.payload
+            }
+        case 'RELOAD_USER':
+            return {
+                ...state,
+                authenticated: true,
+                data: action.payload
             }
         default:
             return state

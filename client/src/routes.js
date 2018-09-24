@@ -7,6 +7,7 @@ import page404 from './pages/Errors/page404'
 import Home from './pages/Home';
 import User from './pages/User';
 import Location from './pages/Location'
+import LocationView from './pages/Location/View'
 
 const routes = [
     {
@@ -27,12 +28,15 @@ const routes = [
                 component: RequestAuth(User)
             }, {
                 path: 'location',
-                component: Location
+                component: Location,
+            }, {
+                path: 'location/:id',
+                component: LocationView
             }
         ]
     },
     {
-        path:'*',
+        path: '*',
         component: App,
         indexRoute: {
             component: page404

@@ -27,6 +27,8 @@ class UserForm extends Component {
         }
         this.props.initialize(initData);
     }
+
+    
     render() {
         //redux-form จะม props ทชอ handleSubmit เพอใช submit คำ
 

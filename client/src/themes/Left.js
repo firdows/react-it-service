@@ -16,6 +16,10 @@ class Left extends Component {
                             <label className="card-title">User :</label>
                             <span className="card-text"> {this.props.data.name}</span>
                         </p>
+                        <p>
+                            <label className="card-title">Type :</label>
+                            <span className="card-text"> {this.props.data.user_type === 1 ? 'ผู้ดูแล' : 'ทั่วไป'}</span>
+                        </p>
                         <Link to="/signout" className="btn btn-primary btn-block">Sign Out</Link>
                     </div>
                 </div>

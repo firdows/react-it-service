@@ -2,7 +2,7 @@ const initialState = {
     locations: { data: null, isLoading: true, isRejected: false },
     location: { data: null, isLoading: true, isRejected: false },
     locationDelete: { success: false, isLoading: true, isRejected: false },
-    locationSave: { success: false, isLoading: true, isRejected: false },
+    locationSave: { data: null, isLoading: true, isRejected: false },
 }
 
 export default (state = initialState, action) => {

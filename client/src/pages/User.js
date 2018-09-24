@@ -57,6 +57,7 @@ class User extends Component {
           buttonDelete={this.handleDelete}
           buttonView={this.handleView}
         />
+        
         {/* เปน Component สำหรบแสดง Modal ของ reactstrap ซงเรำตองควบคมกำรแสดงไวทไฟลน ถำทำแยกไฟลจะควบคมยำกมำกครบ */}
         <Modal isOpen={this.state.modal} toggle={this.toggle}
           className="modal-primary" autoFocus={false}>

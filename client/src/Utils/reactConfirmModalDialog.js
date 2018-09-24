@@ -75,9 +75,11 @@ export default class ReactConfirmModalDialog extends Component {
                         {message}
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={this.toggle}>{cancelLabel}</Button>
                         {confirmLabel && <Button color={buttonColor} onClick={this.onClickConfirm}>
                             {confirmLabel}</Button>}
+                            
+                        <Button color="secondary" onClick={this.toggle}>{cancelLabel}</Button>
+
                     </ModalFooter>
                 </Modal>
             </div>
