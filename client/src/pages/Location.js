@@ -12,6 +12,7 @@ import {
 import { confirmModalDialog } from '../Utils/reactConfirmModalDialog'
 import LocationTable from '../components/Locations/LocationTable'
 import LocationForm from '../components/Locations/LocationForm'
+import $ from 'jquery'
 
 class Location extends Component {
     state = {
@@ -21,7 +22,12 @@ class Location extends Component {
 
 
     componentDidMount() {
-        this.props.dispatch(loadLocations())
+        this.props.dispatch(loadLocations()).then(() => {
+            // $(function () {
+            //     $("button").delay(3000).text(555);
+            // });
+        })
+
     }
 
 

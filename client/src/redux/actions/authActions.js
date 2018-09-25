@@ -22,7 +22,24 @@ export const signin = ({ username, password }) => {
             browserHistory.push('/')
 
             const token = localStorage.getItem('token')
+            //console.log(jwtDecode(token));
             dispatch({ type: 'AUTH_USER', payload: jwtDecode(token) })
+        }).catch(() => {
+            //กรณม error
+            dispatch({ type: 'AUTH_ERROR', payload: "Bad Signin Info" })
+        })
+    }
+}
+
+export const reload_user = (id) => {
+    return (dispatch) => {
+        // dispatch({ type: 'AUTH_USER' })
+        //axios เอำมำใชแทน fetch รปแบบตำมกำรใชงำนตำมโคดดำนลำง
+        return axios.get(`${BASE_URL}/users/${id}`, {
+            headers: { authorization: localStorage.getItem('token') }
+        }).then(results => {
+            results.data.sub = results.data.id;
+            dispatch({ type: 'RELOAD_USER', payload: results.data })
         }).catch(() => {
             //กรณม error
             dispatch({ type: 'AUTH_ERROR', payload: "Bad Signin Info" })

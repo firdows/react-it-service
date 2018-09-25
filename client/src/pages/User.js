@@ -11,6 +11,7 @@ import SearchBar from '../Utils/searchBar'
 import UserTable from '../components/Users/UserTable'
 import UserForm from '../components/Users/UserForm'
 import UserView from '../components/Users/UserView'
+import { reload_user } from '../redux/actions/authActions'
 
 class User extends Component {
   //มกำรใช Modal ของ reactstrap ซงจะตองเกบ State กำรแสดง modal ไว
@@ -27,7 +28,7 @@ class User extends Component {
 
 
   render() {
-    const { users, user, userSave } = this.props
+    const { users, user, userSave, userData } = this.props
     if (users.isRejected) {
       //ถำม error
       return <div>{users.data}</div>
@@ -57,7 +58,7 @@ class User extends Component {
           buttonDelete={this.handleDelete}
           buttonView={this.handleView}
         />
-        
+
         {/* เปน Component สำหรบแสดง Modal ของ reactstrap ซงเรำตองควบคมกำรแสดงไวทไฟลน ถำทำแยกไฟลจะควบคมยำกมำกครบ */}
         <Modal isOpen={this.state.modal} toggle={this.toggle}
           className="modal-primary" autoFocus={false}>
@@ -126,11 +127,17 @@ class User extends Component {
 
   //ฟงกชนบนทกขอมล
   handleSubmit = (values) => {
-    this.props.dispatch(saveUser(values)).then(() => {
+    this.props.dispatch(saveUser(values)).then((results) => {
       if (!this.props.userSave.isRejected) {
         this.toggle()
         this.props.dispatch(loadUsers())
       }
+      // console.log(this.props.userData);
+      // console.log(values);
+      if (values.id == this.props.userData.sub) {
+        this.props.dispatch(reload_user(this.props.userData.sub))
+      }
+
     })
   }
 
@@ -156,7 +163,8 @@ function mapStateToProps(state) {
     users: state.userReducers.users,
     user: state.userReducers.user,
     userDelete: state.userReducers.userDelete,
-    userSave: state.userReducers.userSave
+    userSave: state.userReducers.userSave,
+    userData: state.authReducers.data,
   }
 }
 export default connect(mapStateToProps)(User)

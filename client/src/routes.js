@@ -20,17 +20,34 @@ const routes = [
             {
                 path: 'signin',
                 component: Signin
-            }, {
+            },
+            {
                 path: 'signout',
                 component: Signout
-            }, {
+            },
+            {
                 path: 'user',
                 component: RequestAuth(User)
-            }, {
-                path: 'location',
-                component: Location,
-            }, {
-                path: 'location/:id',
+            },
+            //  {
+            //     path: 'location',
+            //     component: Location,
+            // }, {
+            //     path: 'location/:id',
+            //     component: LocationView
+            // }
+        ]
+    },
+
+    {
+        path: '/location',
+        component: App,
+        indexRoute: {
+            component: Location
+        },
+        childRoutes: [
+            {
+                path: ':id',
                 component: LocationView
             }
         ]
