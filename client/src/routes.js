@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import User from './pages/User';
 import Location from './pages/Location'
 import LocationView from './pages/Location/View'
+import Work from './pages/Work'
 
 const routes = [
     {
@@ -29,13 +30,6 @@ const routes = [
                 path: 'user',
                 component: RequestAuth(User)
             },
-            //  {
-            //     path: 'location',
-            //     component: Location,
-            // }, {
-            //     path: 'location/:id',
-            //     component: LocationView
-            // }
         ]
     },
 
@@ -49,6 +43,19 @@ const routes = [
             {
                 path: ':id',
                 component: LocationView
+            }
+        ]
+    },
+    {
+        path: '/work',
+        component: App,
+        indexRoute: {
+            component: Work
+        },
+        childRoutes: [
+            {
+                path: ':id',
+                component: Work
             }
         ]
     },
