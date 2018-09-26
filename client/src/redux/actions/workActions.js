@@ -19,7 +19,7 @@ export const loadWorks = (term = '') => {
 
 export const getWork = (id) => {
     return (dispatch) => {
-        dispatch({ type: 'LOAD_work_PENDING' })
+        dispatch({ type: 'LOAD_WORK_PENDING' })
         return axios.get(`${BASE_URL}/works/${id}`, {
             headers: { authorization: localStorage.getItem('token') }
         }).then(results => {

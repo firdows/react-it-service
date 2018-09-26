@@ -6,12 +6,14 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducers from './redux/reducers'
 import jwtDecode from 'jwt-decode'
+
 const store = createStore(reducers, applyMiddleware(thunk))
 
 const token = localStorage.getItem('token')

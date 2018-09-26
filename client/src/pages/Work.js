@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Button, Modal, ModalHeader } from 'reactstrap'
+import { Link } from 'react-router'
 ///--
 import {
     loadWorks
 } from '../redux/actions/workActions'
 import WorkTable from '../components/Work/WorkTable'
+import WorkForm from '../components/Work/WorkFormUser'
 
 
 class Work extends Component {
+
+    state = {
+        modal: false,
+        modalTitle: '',
+    }
 
     componentDidMount() {
         this.props.dispatch(loadWorks())
@@ -17,24 +25,57 @@ class Work extends Component {
     render() {
         const { works } = this.props;
 
+
+        if (works.isRejectd) {
+            return <div>{works.data}</div>
+        }
+
+        if (works.isLoading) {
+            return <div>Loading...</div>
+        }
+
+
         return (
             <div>
                 <h3>Work</h3>
 
-                {/* แสดงขอควำม Loading กอน */}
-                {works.isLoading && <div>Loading...</div>}
-                {/* Component UserTable จะสง props ไป 4 ตว */}
+                <p>
+                    <Link to={"work/new"}>
+                        <Button color="success" size="sm" >
+                            เพิ่มข้อมูล
+                    </Button>
+                    </Link>
+                </p>
+
                 <WorkTable
                     data={works.data}
-                    // buttonNew={this.handleNew}
-                    // buttonEdit={this.handleEdit}
-                    // buttonDelete={this.handleDelete}
-                    // buttonView={this.handleView}
+                // buttonNew={this.handleNew}
+                // buttonEdit={this.handleEdit}
+                // buttonDelete={this.handleDelete}
+                // buttonView={this.handleView}
                 />
 
 
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader >{this.state.modalTitle}</ModalHeader>
+                    <WorkForm onToggle={this.toggle} data={this.props.work} />
+                </Modal>
+
             </div>
         )
+    }
+
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+
+    handleNew = () => {
+        this.setState({
+            modalTitle: 'แจ้งปัญหา'
+        })
+        this.toggle()
     }
 }
 

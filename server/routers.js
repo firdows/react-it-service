@@ -32,5 +32,12 @@ module.exports = function (app) {
     app.delete('/locations/:id', locations.delete);
 
     ///Work
-    app.get('/works', works.findAll);
+    //app.get('/works', works.findAll)
+    // app.post('/works', works.create)
+    // app.get('/works/:id', works.findById)
+    //app.get('/works', works.findAll);
+    // app.post('/works', works.create);
+    // app.get('/works/:id', works.findById);
+    // app.put('/works/:id', works.update);
+    // app.delete('/works/:id', works.delete);
 }

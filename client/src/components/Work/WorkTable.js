@@ -5,7 +5,12 @@ import 'moment/locale/th'
 
 export default class WorkTable extends Component {
     render() {
-        const { data, buttonNew, buttonEdit, buttonDelete, buttonView } = this.props
+        const { data, buttonEdit, buttonDelete, buttonView } = this.props;
+
+        // if (data) {
+        //     return <div>{data}</div>
+        // }
+
         var i = 0;
         return (
             <Table striped bordered hover>

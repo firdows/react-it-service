@@ -9,6 +9,7 @@ import User from './pages/User';
 import Location from './pages/Location'
 import LocationView from './pages/Location/View'
 import Work from './pages/Work'
+import WorkFormUser from './components/Work/WorkFormUser'
 
 const routes = [
     {
@@ -34,7 +35,7 @@ const routes = [
     },
 
     {
-        path: '/location',
+        path: 'location',
         component: App,
         indexRoute: {
             component: Location
@@ -47,15 +48,19 @@ const routes = [
         ]
     },
     {
-        path: '/work',
+        path: 'work',
         component: App,
         indexRoute: {
             component: Work
         },
         childRoutes: [
+            // {
+            //     path: ':id',
+            //     component: Work
+            // },
             {
-                path: ':id',
-                component: Work
+                path: 'new',
+                component: WorkFormUser
             }
         ]
     },

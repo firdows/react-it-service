@@ -13,8 +13,9 @@ class UserTable extends Component {
                         <th>ชอ-สกล</th>
                         <th>Username</th>
                         <th width="150" className="text-center">
-                            <Button color="success" size="sm"
-                                onClick={buttonNew}>เพมขอมล</Button>
+                            <Button color="success" size="sm" onClick={buttonNew}>
+                                เพมขอมล
+                            </Button>
                         </th>
                     </tr>
                 </thead>
@@ -35,7 +36,7 @@ class UserTable extends Component {
 
                                         <Button color="primary" size="sm"
                                             onClick={() => buttonEdit(e.id)}>แกไข</Button>
-                                            
+
                                         <Button color="danger" size="sm"
                                             onClick={() => buttonDelete(e.id)}>ลบ</Button>
                                     </ButtonGroup>

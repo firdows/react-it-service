@@ -32,9 +32,16 @@ class Location extends Component {
 
 
     render() {
+       
         const { locations, location, locationSave } = this.props
 
-        console.log(locations.data);
+        //console.log(locations.data);
+
+        if (locations.isRejectd) {
+            return <div>{locations.data}</div>
+        }      
+
+
         return (
             <div>
                 <h4>สถานที่</h4>
@@ -43,6 +50,8 @@ class Location extends Component {
                         เพิ่มสถานที
                     </Button>
                 </p>
+
+                {locations.isLoading && <div>Loading...</div>}
 
                 <LocationTable
                     data={locations.data}
