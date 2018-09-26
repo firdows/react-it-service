@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { debounce } from 'lodash'
 import { connect } from 'react-redux'
+import { Modal, ModalHeader } from 'reactstrap';
+///----
 import {
   loadUsers, getUser, saveUser,
   deleteUser, resetStatus
 } from '../redux/actions/userActions'
-import { Modal, ModalHeader } from 'reactstrap';
 import { confirmModalDialog } from '../Utils/reactConfirmModalDialog'
 import SearchBar from '../Utils/searchBar'
 import UserTable from '../components/Users/UserTable'

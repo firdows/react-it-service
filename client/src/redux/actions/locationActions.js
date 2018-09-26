@@ -12,7 +12,7 @@ export const loadLocations = (term = '') => {
         }).then(results => {
             dispatch({ type: 'LOAD_LOCATIONS_SUCCESS', payload: results.data })
         }).catch(err => {
-            dispatch({ type: 'LOAD_LACATIONS_REJECTED', payload: err.message })
+            dispatch({ type: 'LOAD_LOCATIONS_REJECTED', payload: err.message })
         })
     }
 }
