@@ -42,7 +42,7 @@ export const saveLocation = (values) => {
     return (dispatch) => {
         return axios({
             method: _method,
-            url: `${BASE_URL}/locations/${_id}`,
+            url: `${BASE_URL}/locations${_id?'/'+_id:''}`,
             data: values,
             headers: { authorization: localStorage.getItem('token') }
         }).then(results => {
