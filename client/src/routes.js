@@ -38,7 +38,7 @@ const routes = [
         path: 'location',
         component: App,
         indexRoute: {
-            component: Location
+            component: RequestAuth(Location)
         },
         childRoutes: [
             {

@@ -26,7 +26,7 @@ class Work extends Component {
         const { works } = this.props;
 
 
-        if (works.isRejectd) {
+        if (works.isRejected) {
             return <div>{works.data}</div>
         }
 

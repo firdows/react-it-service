@@ -26,6 +26,8 @@ class Location extends Component {
             // $(function () {
             //     $("button").delay(3000).text(555);
             // });
+
+            console.log(this.props.locations);
         })
 
     }
@@ -37,8 +39,12 @@ class Location extends Component {
 
         //console.log(locations.data);
 
-        if (locations.isRejectd) {
+        if (locations.isRejected) {
             return <div>{locations.data}</div>
+        }     
+
+        if (locations.isLoading) {
+            return <div>Loading...</div>
         }      
 
 

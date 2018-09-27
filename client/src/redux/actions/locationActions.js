@@ -10,7 +10,9 @@ export const loadLocations = (term = '') => {
         return axios.get(`${BASE_URL}/locations?term=${term}`, {
             headers: { authorization: localStorage.getItem('token') }
         }).then(results => {
-            dispatch({ type: 'LOAD_LOCATIONS_SUCCESS', payload: results.data })
+            console.log(results.data);
+
+            dispatch({ type: 'LOAD_LOCATIONS_SUCCESS', payload: results.data.data })
         }).catch(err => {
             dispatch({ type: 'LOAD_LOCATIONS_REJECTED', payload: err.message })
         })
@@ -23,7 +25,7 @@ export const getLocation = (id) => {
         return axios.get(`${BASE_URL}/locations/${id}`, {
             headers: { authorization: localStorage.getItem('token') }
         }).then(results => {
-            dispatch({ type: 'LOAD_LOCATION_SUCCESS', payload: results.data })
+            dispatch({ type: 'LOAD_LOCATION_SUCCESS', payload: results.data.data })
         }).catch(err => {
             dispatch({ type: 'LOAD_LACATION_REJECTED', payload: err.message })
         })
@@ -50,6 +52,7 @@ export const saveLocation = (values) => {
                 dispatch({ type: 'SAVE_LOCATION_SUCCESS' })
             }
         }).catch(err => {
+            console.log(err);
             dispatch({ type: 'SAVE_LOCATION_REJECTED', payload: err.message })
         })
     }

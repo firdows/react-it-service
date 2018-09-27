@@ -35,6 +35,18 @@ class Header extends Component {
                         <Link to="/user" className="nav-link">ผู้ใช้</Link>
                     </li>,
                 ]
+            } else {
+                return [
+                    <li className="nav-item" key={2} >
+                        <Link to="/work" className="nav-link">แจ้งซ่อม</Link>
+                    </li>,
+                    <li className="nav-item" key={3} >
+                        <Link to="/location" className="nav-link">สถานที่</Link>
+                    </li>,
+                    <li className="nav-item" key={4} >
+                        <Link to="/user" className="nav-link">ผู้ใช้</Link>
+                    </li>,
+                ]
             }
         }
     }
@@ -48,7 +60,7 @@ class Header extends Component {
                     <Link to="/signout" className="nav-link">ออกจากระบบ</Link>
                 </li>,
             ]
-        }else{
+        } else {
             return [
                 <li className="nav-item" key={1} >
                     <Link to="/signin" className="nav-link">เข้าสู่ระบบ</Link>

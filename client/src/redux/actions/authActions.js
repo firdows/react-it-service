@@ -10,23 +10,29 @@ export const signin = ({ username, password }) => {
         //axios เอำมำใชแทน fetch รปแบบตำมกำรใชงำนตำมโคดดำนลำง
         return axios({
             method: "post",
-            url: `${BASE_URL}/signin`,
+            url: `${BASE_URL}/login`,
             data: {
                 username,
                 password
             }
         }).then(response => {
-
-            localStorage.setItem('token', response.data.token)
+            console.log(response);
+            console.log(response.data.data.token);
+            //console.log(response.data.data.data.token);
+            localStorage.setItem('token', response.data.data.token)
 
             browserHistory.push('/')
 
             const token = localStorage.getItem('token')
-            //console.log(jwtDecode(token));
+            console.log('token:');
+            console.log(token);
+
+            console.log(jwtDecode(token));
             dispatch({ type: 'AUTH_USER', payload: jwtDecode(token) })
-        }).catch(() => {
+        }).catch((err) => {
             //กรณม error
-            dispatch({ type: 'AUTH_ERROR', payload: "Bad Signin Info" })
+            console.log(err);
+            dispatch({ type: 'AUTH_ERROR', payload: "Bad Signin Info : "+err.message })
         })
     }
 }
