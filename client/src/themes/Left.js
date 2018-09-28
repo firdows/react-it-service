@@ -7,7 +7,7 @@ import { reload_user } from '../redux/actions/authActions';
 class Left extends Component {
     render() {
         const { reload_user } = this.props;
-        console.log(this.props.data);
+       // console.log(this.props.data);
         if (this.props.authentication) {
             return (
                 <div className="card">

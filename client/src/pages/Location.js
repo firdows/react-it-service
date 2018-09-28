@@ -12,7 +12,7 @@ import {
 import { confirmModalDialog } from '../Utils/reactConfirmModalDialog'
 import LocationTable from '../components/Locations/LocationTable'
 import LocationForm from '../components/Locations/LocationForm'
-import $ from 'jquery'
+//import $ from 'jquery'
 
 class Location extends Component {
     state = {

@@ -29,7 +29,7 @@ class User extends Component {
 
 
   render() {
-    const { users, user, userSave, userData } = this.props
+    const { users, user, userSave } = this.props
     if (users.isRejected) {
       //ถำม error
       return <div>{users.data}</div>
@@ -45,7 +45,7 @@ class User extends Component {
                     โดยฝง SearchBar จะนำไปใชกบ event onChange */}
             <SearchBar
               onSearchTermChange={userSearch}
-              placeholder="คนหำ...ชอ-สกล, Username" />
+              placeholder="ค้นหา...ชื่อ-สกุล, Username, Email" />
           </div>
         </div>
 
@@ -135,7 +135,7 @@ class User extends Component {
       }
       // console.log(this.props.userData);
       // console.log(values);
-      if (values.id == this.props.userData.sub) {
+      if (values.id === this.props.userData.sub) {
         this.props.dispatch(reload_user(this.props.userData.sub))
       }
 

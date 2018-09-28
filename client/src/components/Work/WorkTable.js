@@ -18,6 +18,7 @@ export default class WorkTable extends Component {
                     <tr>
                         <th width="120" className="text-center">#</th>
                         <th>วันที่แจ้ง</th>
+                        <th>หัวข้อ</th>
                         <th>ปัญหาที่แจ้ง</th>
                         <th>สถานที่</th>
                         <th>สถานะ</th>
@@ -34,9 +35,10 @@ export default class WorkTable extends Component {
                                 <td className="text-center">
                                     {++i}
                                 </td>
-                                <td>{moment(e.doc_date).local('th').format('ll')}</td>
+                                <td>{moment(e.doc_date).local('th').format('ll')} {e.doc_time}</td>
+                                <td>{e.title}</td>
                                 <td>{e.detail}</td>
-                                <td>{e.location_name}</td>
+                                <td>{e.location.name}</td>
                                 <td>{e.status}</td>
                                 <td className="text-center">
                                     <ButtonGroup>

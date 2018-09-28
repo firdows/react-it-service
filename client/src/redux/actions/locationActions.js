@@ -2,13 +2,14 @@ import axios from 'axios'
 import config from '../../configure'
 
 const BASE_URL = config.BASE_URL
+const PREFIX_TOKEN = config.PREFIX_TOKEN
 
 export const loadLocations = (term = '') => {
     return (dispatch) => {
         dispatch({ type: 'LOAD_LOCATIONS_PENDING' })
 
         return axios.get(`${BASE_URL}/locations?term=${term}`, {
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             console.log(results.data);
 
@@ -23,7 +24,7 @@ export const getLocation = (id) => {
     return (dispatch) => {
         dispatch({ type: 'LOAD_LOCATION_PENDING' })
         return axios.get(`${BASE_URL}/locations/${id}`, {
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             dispatch({ type: 'LOAD_LOCATION_SUCCESS', payload: results.data.data })
         }).catch(err => {
@@ -42,9 +43,9 @@ export const saveLocation = (values) => {
     return (dispatch) => {
         return axios({
             method: _method,
-            url: `${BASE_URL}/locations${_id?'/'+_id:''}`,
+            url: `${BASE_URL}/locations${_id ? '/' + _id : ''}`,
             data: values,
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             if (results.data.status) {
                 dispatch({ type: 'SAVE_LOCATION_REJECTED', payload: results.data.message })
@@ -61,14 +62,13 @@ export const saveLocation = (values) => {
 export const deleteLocation = (id) => {
     return (dispatch) => {
         return axios.delete(`${BASE_URL}/locations/${id}`, {
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             dispatch({ type: 'DELETE_LOCATION_SUCCESS' })
         }).catch(err => {
             dispatch({ type: 'DELETE_LOCATION_REJECTED', payload: err.message })
         })
     }
-
 }
 
 

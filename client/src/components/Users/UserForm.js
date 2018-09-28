@@ -22,13 +22,16 @@ class UserForm extends Component {
         //ถำมแสดงวำมกำร get ขอมลผู้ใช้งานจงเปนกำรปรบปรง
         if (this.props.data.id) {
             initData = this.props.data
+
+            console.log("user-form:");
+            console.log(initData);
             //user_type ทรบมำเปน init แตvalue ตองแปลงเปน string กอน
             initData.user_type = this.props.data.user_type.toString()
         }
         this.props.initialize(initData);
     }
 
-    
+
     render() {
         //redux-form จะม props ทชอ handleSubmit เพอใช submit คำ
 
@@ -67,7 +70,8 @@ class UserForm extends Component {
                             </div>
                         </div>
                     </div>
-                    <Field name="name" component={renderField} type="text" label="ชอ-สกล" autoFocus />
+                    <Field name="email" component={renderField} type="text" label="Email" autoFocus />
+                    <Field name="name" component={renderField} type="text" label="ชอ-สกล" />
                     <Field name="username" component={renderField} type="text" label="Username" />
                     <Field name="password" component={renderField} type="password" label="Password" />
                 </ModalBody>

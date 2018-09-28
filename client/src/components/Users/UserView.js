@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Button, ModalBody, ModalFooter, Table } from 'reactstrap';
+import { Button, ModalFooter, Table } from 'reactstrap';
 class UserView extends Component {
 
     render() {
         //redux-form จะม props ทชอ handleSubmit เพอใช submit คำ
         let { id, user_type, name, username } = this.props.data;
+        console.log('user-view:');
+        console.log(this.props.data);
 
         user_type = user_type.toString();
         return (

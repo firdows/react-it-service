@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal, ModalHeader } from 'reactstrap'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 ///--
 import {
-    loadWorks
+    loadWorks, deleteWork
 } from '../redux/actions/workActions'
 import WorkTable from '../components/Work/WorkTable'
-import WorkForm from '../components/Work/WorkFormUser'
+import WorkForm from './Work/WorkFormUser'
 
 
 class Work extends Component {
@@ -40,7 +40,7 @@ class Work extends Component {
                 <h3>Work</h3>
 
                 <p>
-                    <Link to={"work/new"}>
+                    <Link to={"/work/new"}>
                         <Button color="success" size="sm" >
                             เพิ่มข้อมูล
                     </Button>
@@ -49,10 +49,9 @@ class Work extends Component {
 
                 <WorkTable
                     data={works.data}
-                // buttonNew={this.handleNew}
-                // buttonEdit={this.handleEdit}
-                // buttonDelete={this.handleDelete}
-                // buttonView={this.handleView}
+                    buttonEdit={this.handleEdit}
+                    buttonDelete={this.handleDelete}
+                    buttonView={this.handleView}
                 />
 
 
@@ -77,6 +76,21 @@ class Work extends Component {
         })
         this.toggle()
     }
+
+    handleView = (id) => {
+        browserHistory.push(`/work/view/${id}`)
+    }
+
+    handleEdit = (id) => {
+        browserHistory.push(`/work/update/${id}`)
+    }
+
+    handleDelete = (id) => {
+        this.props.dispatch(deleteWork(id)).then(() => {
+            this.props.dispatch(loadWorks())
+        })
+    }
+
 }
 
 function mapStateToProps(state) {

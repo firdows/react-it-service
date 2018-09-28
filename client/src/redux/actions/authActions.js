@@ -27,7 +27,7 @@ export const signin = ({ username, password }) => {
             console.log('token:');
             console.log(token);
 
-            console.log(jwtDecode(token));
+            //console.log(jwtDecode(token));
             dispatch({ type: 'AUTH_USER', payload: jwtDecode(token) })
         }).catch((err) => {
             //กรณม error
@@ -60,6 +60,6 @@ export const signout = () => {
     return (dispatch) => {
         localStorage.removeItem('token')
         dispatch({ type: 'UNAUTH_USER' })
-        browserHistory.push('/')
+        browserHistory.push('/signin')
     }
 }

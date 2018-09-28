@@ -2,20 +2,22 @@ import axios from 'axios'
 import config from '../../configure'
 //ดงเอำ url ทใช fetch data มำเกบไวใน BASE_URL
 const BASE_URL = config.BASE_URL
+const PREFIX_TOKEN = config.PREFIX_TOKEN
 //ฟงกชนดงขอมลผใชทกรำยกำรโดยจะสง query ชอ term เขำไปดวยเพอนำไป filter
 //สำหรบ es6 เรำสำมำรถกำหนดคำ default ของ parameter ไดดวยครบ
-export const loadUsers = (term = '') => {
+export const loadUsers = (q = '') => {
     return (dispatch) => {
         //กอนดงขอมลสง dispatch ให reducer รวำกอนเพอจะแสดง loading
         dispatch({ type: 'LOAD_USERS_PENDING' })
-        return axios.get(`${BASE_URL}/users?term=${term}`, {
+        return axios.get(`${BASE_URL}/users?q=${q}`, {
             //ตองสง heder ชอ authorization โดยสง token เขำไป
             //เพอบอกให server รวำเรำได signin ถกตองแลว
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             //เมอขอมลสงกลบมำกสง dispatch ให reducer รพรอมสง payload
             //เนองจำกเรำใช axios แทน fetch ดงนนขอมลทสงมำจะอยใน object ชอ data
             //ทม Array อยขำงใน ดงนนนำไป data.map ไดเลยครบ
+            console.log(results);
             dispatch({ type: 'LOAD_USERS_SUCCESS', payload: results.data })
         }).catch(err => {
             //กรณ error
@@ -30,8 +32,9 @@ export const getUser = (id) => {
         return axios.get(`${BASE_URL}/users/${id}`, {
             //ตองสง heder ชอ authorization โดยสง token เขำไป
             //เพอบอกให server รว            ำเรำได signin ถกตองแลว
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
+            console.log(results);
             //เมอขอมลสงกลบมำกสง dispatch ให reducer รพรอมสง payload
             //axios จะสงขอมลกลบมำกบ object ชอ data
             dispatch({ type: 'LOAD_USER_SUCCESS', payload: results.data })
@@ -52,7 +55,7 @@ export const saveUser = (values) => {
     let _id = ''
     let _method = 'post'
     if (values.id) {
-        _id = values.id
+        _id = '/' + values.id
         _method = 'put'
     }
     return (dispatch) => {
@@ -60,9 +63,9 @@ export const saveUser = (values) => {
         //ตองสง heder ชอ authorization โดยสง token เขำไปดวยครบ
         return axios({
             method: _method,
-            url: `${BASE_URL}/users/${_id}`,
+            url: `${BASE_URL}/users${_id}`,
             data: values,
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             //เมอขอมลสงกลบมำตองเชคสถำนะกอนวำ username ซำหรอไม
             //โดยserver จะสง object ทชอวำ status และ message กลบมำ
@@ -85,7 +88,7 @@ export const deleteUser = (id) => {
     return (dispatch) => {
         return axios.delete(`${BASE_URL}/users/${id}`, {
             //ตองสง heder ชอ authorization โดยสง token เขำไปดวยครบ
-            headers: { authorization: localStorage.getItem('token') }
+            headers: { authorization: PREFIX_TOKEN + localStorage.getItem('token') }
         }).then(results => {
             //ลบขอมลสำเรจ
             dispatch({ type: 'DELETE_USER_SUCCESS' })
