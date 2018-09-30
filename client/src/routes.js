@@ -11,6 +11,8 @@ import LocationView from './pages/Location/View'
 import Work from './pages/Work'
 import WorkFormUser from './pages/Work/WorkFormUser'
 import WorkView from './pages/Work/WorkView'
+import WorkRepair from './pages/WorkRepair'
+import WorkFormRepair from './pages/Work/WorkFormRepair'
 
 const routes = [
     {
@@ -41,6 +43,14 @@ const routes = [
             { path: 'view/:id', component: WorkView },
             { path: 'update/:id', component: WorkFormUser },
 
+        ]
+    },
+    {
+        path: 'work/repair',
+        component: App,
+        indexRoute: { component: RequestAuth(WorkRepair) },        
+        childRoutes: [
+            { path: ':id', component: WorkFormRepair },
         ]
     },
     {

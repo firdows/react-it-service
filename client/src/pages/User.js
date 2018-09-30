@@ -23,6 +23,7 @@ class User extends Component {
   }
   //สง dispach ฟงกชน loadUsers
   componentDidMount() {
+    document.title = "Users";
     this.props.dispatch(loadUsers())
   }
 

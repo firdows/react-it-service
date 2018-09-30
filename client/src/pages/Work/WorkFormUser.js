@@ -11,8 +11,13 @@ import renderLocations from '../../Utils/renderLocations'
 
 export class WorkFormUser extends Component {
 
+    
     componentDidMount() {
+        //this.props.dispatch("")
+        this.props.dispatch({ type: 'LOAD_WORK_BEFORE' });
         const workId = (this.props.params.id) ? this.props.params.id : null
+        console.log('workId:')
+        console.log(workId);
         if (workId) {
             this.props.dispatch(getWork(workId)).then(() => {
                 this.handleInitialize()
@@ -26,7 +31,7 @@ export class WorkFormUser extends Component {
     handleInitialize() {
         let initData = {
             "location_id": 'foo',
-            'title':'',
+            'title': '',
         }
         if (this.props.work.data) {
             initData = this.props.work.data
@@ -46,6 +51,9 @@ export class WorkFormUser extends Component {
 
         if (work.isRejected) {
             return <div className="alert alert-danger">Error: {data}</div>
+        }
+        if (work.isLoading) {
+            return <div >Loading...</div>
         }
 
 

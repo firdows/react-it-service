@@ -5,16 +5,17 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import { Router, browserHistory } from 'react-router';
-import routes from './routes';
 import { devToolsEnhancer, composeEnhancers } from 'redux-devtools-extension';
-
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import reducers from './redux/reducers'
 import jwtDecode from 'jwt-decode'
+///---
+import reducers from './redux/reducers'
+import routes from './routes';
+import config from './configure'
 
-const store = createStore(reducers,devToolsEnhancer(), applyMiddleware(thunk))
+const store = createStore(reducers, devToolsEnhancer(), applyMiddleware(thunk))
 
 const token = localStorage.getItem('token')
 if (token) {
@@ -27,6 +28,6 @@ if (token) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
+        <Router history={browserHistory} routes={routes} basename={config.BASENAME} />
     </Provider>, document.getElementById('root'));
 registerServiceWorker();

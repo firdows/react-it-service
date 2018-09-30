@@ -18,6 +18,7 @@ class Work extends Component {
     }
 
     componentDidMount() {
+        // this.props.dispatch({ type: 'LOAD_WORK_BEFORE' })
         this.props.dispatch(loadWorks())
     }
 

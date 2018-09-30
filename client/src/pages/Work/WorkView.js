@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getWork } from '../../redux/actions/workActions';
+import { getWork, getStatusLabel } from '../../redux/actions/workActions';
 import { Table } from 'reactstrap'
+import moment from 'moment'
 
 class WorkView extends Component {
     componentDidMount() {
@@ -19,19 +20,58 @@ class WorkView extends Component {
             return <div>{work.data}</div>
 
         if (work.isLoading)
-            return (<div>Loading....</div>)
-
+            return <div>Loading....</div>
 
         return (
             <div>
-                <h3>{data.detail}</h3>
+                <h3>{data.title}</h3>
                 <Table>
-                    <tr>
-                        <th>วันที่แจ้ง</th>
-                        <td>{data.doc_date}</td>
-                    </tr>
-
+                    <tbody>
+                        <tr>
+                            <th>วันที่แจ้ง</th>
+                            <td>{data.doc_date && moment(data.doc_date).format('ll')} {data.doc_time}</td>
+                        </tr>
+                        <tr>
+                            <th>ชื่อเรื่อง</th>
+                            <td>{data.title}</td>
+                        </tr>
+                        <tr>
+                            <th>ปัญหา</th>
+                            <td>{data.detail}</td>
+                        </tr>
+                        <tr>
+                            <th>สถานที่</th>
+                            <td>{data.location.name}</td>
+                        </tr>
+                        <tr>
+                            <th>โทรศัพท์ติดต่อ</th>
+                            <td>{data.phone}</td>
+                        </tr>
+                        <tr>
+                            <th>สถานะ</th>
+                            <td>{getStatusLabel(data.status)}</td>
+                        </tr>
+                    </tbody>
                 </Table>
+
+                {data.status_date &&
+                    <Table>
+                        <tbody>
+                            <tr>
+                                <th>การซ่อม</th>
+                                <td>{data.work_detail}</td>
+                            </tr>
+                            <tr>
+                                <th>เมื่อ</th>
+                                <td>{moment(data.status_date).format('ll')}</td>
+                            </tr>
+                            <tr>
+                                <th>โดย</th>
+                                <td>{data.workUser && data.workUser.name}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                }
             </div>
         )
     }

@@ -16,6 +16,8 @@ export default (state = initialState, action) => {
             return { ...state, works: { data: action.payload, isLoading: false, isRejected: true } }
 
         //work
+        case 'LOAD_WORK_BEFORE':
+            return { ...state, work: { data: null, isLoading: false, isRejected: false } }
         case 'LOAD_WORK_PENDING':
             return { ...state, work: { data: null, isLoading: true, isRejected: false } }
         case 'LOAD_WORK_SUCCESS':

@@ -16,38 +16,30 @@ class Header extends Component {
     }
 
     renderLinks() {
+        let menu_items = [];
+
         if (this.props.authentication) {
-            if (this.props.data.user_type === 0) {
-                return [
-                    <li className="nav-item" key={2} >
-                        <Link to="/work" className="nav-link">แจ้งซ่อม</Link>
-                    </li>,
-                ]
-            } else if (this.props.data.user_type === 1) {
-                return [
-                    <li className="nav-item" key={2} >
-                        <Link to="/work" className="nav-link">แจ้งซ่อม</Link>
-                    </li>,
-                    <li className="nav-item" key={3} >
-                        <Link to="/location" className="nav-link">สถานที่</Link>
-                    </li>,
-                    <li className="nav-item" key={4} >
-                        <Link to="/user" className="nav-link">ผู้ใช้</Link>
-                    </li>,
+            if (this.props.data.user_type === 1) {
+                menu_items = [
+                    { title: 'แจ้งซ่อม', link: "/work" },
+                    { title: 'งานซ่อม', link: "/work/repair" },
+                    { title: 'สถานที่', link: "/location" },
+                    { title: 'ผู้ใช้', link: "/user" },
                 ]
             } else {
-                return [
-                    <li className="nav-item" key={2} >
-                        <Link to="/work" className="nav-link">แจ้งซ่อม</Link>
-                    </li>,
-                    <li className="nav-item" key={3} >
-                        <Link to="/location" className="nav-link">สถานที่</Link>
-                    </li>,
-                    <li className="nav-item" key={4} >
-                        <Link to="/user" className="nav-link">ผู้ใช้</Link>
-                    </li>,
+                menu_items = [
+                    { title: 'แจ้งซ่อม', link: "/work" },
+                    { title: 'งานซ่อม', link: "/work-repair" },
                 ]
             }
+            var i = 0;
+            return (
+                (menu_items && menu_items.map(item => {
+                    return <li className="nav-item" key={++i} >
+                        <Link to={item.link} className="nav-link">{item.title}</Link>
+                    </li>
+                }))
+            )
         }
     }
 
@@ -71,7 +63,8 @@ class Header extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-md navbar-dark bg-warning">
+            <nav className="navbar navbar-expand-md navbar-dark bg-info">
+
                 <NavbarBrand href="/" >IT Service</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>

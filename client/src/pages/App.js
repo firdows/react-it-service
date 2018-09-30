@@ -4,10 +4,13 @@ import Header from '../themes/Header';
 import Left from '../themes/Left';
 
 class App extends Component {
+
+
     render() {
+        
         if (this.props.authentication) {
             return (
-                <div className="App">
+                <div className="App">                    
                     <Header />
                     <div className="container-fluid">
                         <div className="content">
