@@ -41,7 +41,7 @@ class WorkView extends Component {
                         </tr>
                         <tr>
                             <th>สถานที่</th>
-                            <td>{data.location.name}</td>
+                            <td>{data.location && data.location.name}</td>
                         </tr>
                         <tr>
                             <th>โทรศัพท์ติดต่อ</th>
@@ -49,7 +49,7 @@ class WorkView extends Component {
                         </tr>
                         <tr>
                             <th>สถานะ</th>
-                            <td>{getStatusLabel(data.status)}</td>
+                            <td>{data.status && getStatusLabel(data.status)}</td>
                         </tr>
                     </tbody>
                 </Table>

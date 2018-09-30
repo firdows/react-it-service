@@ -41,7 +41,7 @@ export default class WorkTableRepair extends Component {
                                 <td>{moment(e.doc_date).local('th').format('ll')} {e.doc_time}</td>
                                 <td>{e.title}</td>
                                 <td>{e.detail}</td>
-                                <td>{e.location.name}</td>
+                                <td>{e.location && e.location.name}</td>
                                 <td>{getStatusLabel(e.status)}</td>
                                 <td className="text-center">
                                     <ButtonGroup>
